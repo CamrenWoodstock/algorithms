@@ -13,17 +13,27 @@ addons:
 
 matrix:
   include:
+    - name: "All"
+      env:
+      - TARGET=all
     - name: "Strings"
       env: 
-      - SOURCE=source/string.cpp
+      - TARGET=String
     - name: "Functions"
       env:
-      - SOURCE=source/functions.cpp
-      - SOURCE=source/functions_recursive.cpp
+      - TARGET=functions RECURSIVE=true
+      - TARGET=functions RECURSIVE=false
     - name: "Sorts"
       env:
-      - SOURCE=source/sorts.cpp
+      - TARGET=sorts
+    - name: "LinkedList"
+      env:
+      - TARGET=SLL
+      - TARGET=CSLL
+      - TARGET=DLL
+      - TARGET=CDLL
+    - name: "Two Stacks"
+      -TARGET=twostack
 
 script:
-  - echo $SOURCE
-  - g++-8 -std=c++11 $SOURCE && ./a.out
+  - make $TARGET
