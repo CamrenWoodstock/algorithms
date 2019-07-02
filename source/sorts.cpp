@@ -82,3 +82,40 @@ void mergesort(int* arr, int n) {
     merge(arr, n, n / 2);
   }
 }
+
+
+int partition(int arr[], int low, int high) {
+
+  int pivot = arr[high];
+  int i = low - 1; // yes this is equal to -1
+
+// Go through elements j = low all the way to high
+  for (int j = low; j < high; j++) {
+    if ( arr[j] <= pivot) {
+      i++; // index of the smaller element 
+      swap(&arr[i], &arr[j]);
+    }
+  }
+  swap(&arr[i + 1], &arr[high]);
+  return (i + 1);
+}
+
+// arr is the array to be sorted
+// left is the starting index 
+// right is the end index
+void quicksort(int arr[], int left, int right) {
+  if (left < right) {
+    // set a partitioning index;
+    int pIndex = partition(arr, left, right);
+
+    // sort elements before and after partition 
+    quicksort(arr, left, pIndex - 1);
+    quicksort(arr, pIndex + 1, right);
+  }
+
+}
+
+
+void quicksort(int* arr, int n){
+  
+}
